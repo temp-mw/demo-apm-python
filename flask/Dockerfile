@@ -27,8 +27,7 @@ COPY ./ ./
 
 # Setup ENV variables
 ENV MW_AGENT_SERVICE=172.17.0.1
-ENV MIDDLEWARE_CONFIG_FILE=./middleware.ini
 
 RUN middleware-bootstrap -a install
 
-ENTRYPOINT [ "middleware-apm", "run", "python", "app.py" ]
+ENTRYPOINT [ "middleware-run", "python", "app.py" ]

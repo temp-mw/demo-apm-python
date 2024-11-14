@@ -1,18 +1,18 @@
 import logging
 
-from middleware import MwTracker
-tracker = MwTracker()
+from middleware import mw_tracker, MWOptions
+mw_tracker(
+    MWOptions(
+        access_token="whkvkobudfitutobptgonaezuxpjjypnejbb",
+        target="https://myapp.middleware.io:443",
+        service_name="MyPythonApp",
+    )
+)
+
 
 from dotenv import load_dotenv
 load_dotenv()
 import os
-
-
-print("\n----------DEBUGGING INFO----------")
-print(os.environ.get('MW_TARGET'))
-print(tracker.access_token)
-print(tracker.service_name)
-print("----------DEBUGGING INFO----------\n")
 
 from typing import Union
 

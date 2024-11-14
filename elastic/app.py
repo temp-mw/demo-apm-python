@@ -1,8 +1,16 @@
 
 # app.py
 
-from middleware import MwTracker
-MwTracker()
+from middleware import mw_tracker, MWOptions
+mw_tracker(
+    MWOptions(
+        access_token="whkvkobudfitutobptgonaezuxpjjypnejbb",
+        target="https://myapp.middleware.io:443",
+        service_name="MyPythonAppElastic",
+        collect_profiling=True,
+        otel_propagators="b3,tracecontext",
+    )
+)
 
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS

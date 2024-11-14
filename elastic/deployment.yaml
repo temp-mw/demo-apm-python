@@ -20,14 +20,12 @@ spec:
     spec:
       containers:
         - command: ["/bin/sh"]
-          args: ["-c", "middleware-apm run python app.py"]
+          args: ["-c", "middleware-run python app.py"]
           env:
             - name: MW_SERVICE_NAME
               value: "python-elastic-k8s"
             - name: MW_AGENT_SERVICE
               value: mw-service.mw-agent-ns.svc.cluster.local
-            # - name: MIDDLEWARE_CONFIG_FILE
-            #   value: ./middleware.ini
             - name: MW_API_KEY
               value: ycppepesamhvpjnquasfafasfashhxhkmkgqd
             - name: MW_TARGET

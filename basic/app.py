@@ -5,9 +5,14 @@ from functools import wraps
 from opentelemetry import trace, metrics
 from opentelemetry.trace.status import StatusCode
 
-
-from middleware import MwTracker
-tracker=MwTracker()
+from middleware import mw_tracker, MWOptions, record_exception
+mw_tracker(
+    MWOptions(
+        access_token="whkvkobudfitutobptgonaezuxpjjypnejbb",
+        target="https://myapp.middleware.io:443",
+        service_name="MyPythonApp",
+    )
+)
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -53,7 +58,7 @@ def trace_request(func):
 
             except Exception as e:
                 span.set_status(StatusCode.ERROR)
-                span.record_exception(e)
+                record_exception(e)
                 logger.error(f"Exception occurred in {func.__name__}: {str(e)}")
                 logger.error(f"Stack Trace:\n{traceback.format_exc()}")  # Log the full stack trace
                 return jsonify({"error": "An internal error occurred"}), 500

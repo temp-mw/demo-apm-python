@@ -2,14 +2,23 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+import logging
 
-from middleware import MwTracker
-tracker=MwTracker()
-tracker.django_instrument()
+
+from middleware import mw_tracker, MWOptions
+mw_tracker(
+    MWOptions(
+        access_token="whkvkobudfitutobptgonaezuxpjjypnejbb",
+        target="https://myapp.middleware.io:443",
+        service_name="MyPythonApp",
+    )
+)
+
+logging.getLogger().setLevel(logging.INFO)
 
 def main():
-    """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'demo.settings')
+    logging.info("testing info log for Django")
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'helloworld.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -23,4 +32,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
