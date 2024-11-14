@@ -1,4 +1,4 @@
-middleware-apm>=2.0.0
+middleware-io>=2.0.0
 flask==3.0.3
 flask_cors==5.0.0
 elasticsearch==8.15.1

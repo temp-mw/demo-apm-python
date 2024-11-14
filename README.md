@@ -1,7 +1,7 @@
 # Getting Started With Middleware Python APM 
 Follow our [documentation](https://docs.middleware.io/docs/apm-configuration/python/python-apm-setup) to setup APM for your Python application and detailed explanation for telemetry data for APMs.
 
-[![PyPI - Version](https://img.shields.io/pypi/v/middleware-apm)](https://pypi.org/project/middleware-apm/)
+[![PyPI - Version](https://img.shields.io/pypi/v/middleware-io)](https://pypi.org/project/middleware-io/)
 
 
 |  Traces  |  Metrics  |  Profiling  |  Logs (App/Custom)  |
@@ -24,7 +24,7 @@ $ source myenv/bin/activate
 ### Install Middleware's Python APM package
 Run the following commands in your terminal:
 ```bash
-$ pip install middleware-apm
+$ pip install middleware-io
 ```
 ### Install instrumentation library for the framework:
 Run the following commands in your terminal  
@@ -185,7 +185,7 @@ Example usage:
 To enable continous profiling for your python application.  
 Install required profiling dependencies with below command:
 ```
-pip install middleware-apm[profiling]
+pip install middleware-io[profiling]
 ```
 Enable profiling with `collect_profiling` or `export MW_APM_COLLECT_PROFILING=True`
 

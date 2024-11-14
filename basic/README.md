@@ -1,7 +1,7 @@
 # Basic Python Application Instrumentation Guide
 Follow our [documentation](https://docs.middleware.io/docs/apm-configuration/python/python-apm-setup) to setup APM for your basic python application.
 
-[![PyPI - Version](https://img.shields.io/pypi/v/middleware-apm)](https://pypi.org/project/middleware-apm/)
+[![PyPI - Version](https://img.shields.io/pypi/v/middleware-io)](https://pypi.org/project/middleware-io/)
 
 
 |  Traces  |  Metrics  |  Profiling  |  Logs (App/Custom)  |
@@ -22,7 +22,7 @@ pip install -r requirements.txt
 
 ## Install Middleware APM package
 ```shell
-pip install middleware-apm
+pip install middleware-io
 ```
 
 ## Install OpenTelemetry instrument libraries 
