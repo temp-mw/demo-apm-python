@@ -26,7 +26,7 @@ spec:
               value: mw-service.mw-agent-ns.svc.cluster.local
             - name: DJANGO_SETTINGS_MODULE
               value: helloworld.settings
-          image: ghcr.io/middleware-labs/django-test
+          image: ghcr.io/middleware-labs/django-simple-v2:latest
           imagePullPolicy: Always
           name: mw-kube-agent
           resources: {}
