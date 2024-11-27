@@ -1,7 +1,11 @@
-# You will need request from flask to monitor your traces
-from middleware import MwTracker
-tracker=MwTracker()
-
+from middleware import mw_tracker, MWOptions
+mw_tracker(
+    MWOptions(
+        access_token="whkvkobudfitutobptgonaezuxpjjypnejbb",
+        target="https://myapp.middleware.io:443",
+        service_name="MyPythonApp",
+    )
+)
 
 from flask import Flask
 

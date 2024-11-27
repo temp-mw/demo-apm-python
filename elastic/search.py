@@ -12,8 +12,8 @@ class Search:
 
         # Connect to Elasticsearch Cloud
         self.es = Elasticsearch(
-            "https://e54bffae04f54f3cbe8fff59514134b6.us-central1.gcp.cloud.es.io:443",
-            api_key="MlM2RUQ1SUJCeW15emhfOVplQUs6d3BrSllVOThRLVNfTGVlZ0Fld3pvQQ"
+            "https://d1659ecd2ab24a0fa0614447e041a977.us-central1.gcp.cloud.es.io:443",
+            api_key="TWJPeEs1TUJxUUxyWWR2QTlHZkQ6U2pQYkdlenhUN2FwUkdVN2tDUlNpQQ=="
         )
         if not self.es.ping():
             logging.info("Ping fail.")
