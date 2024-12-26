@@ -1,0 +1,4 @@
+django
+uwsgi
+
+middleware-io>=2.1.0
