@@ -2,6 +2,8 @@ import flask
 from flask import request
 
 from opentelemetry import trace
+import logging
+logging.getLogger().setLevel(logging.INFO)
 
 app = flask.Flask(__name__)
 
@@ -28,10 +30,12 @@ def fibonacci():
     with tracer.start_as_current_span("root"): # added custom span root
         with tracer.start_as_current_span("fib_slow") as slow_span: # added custom span slow_span
             ans = fib_slow(n)
+            logging.info(f"calculated fib_slow for n={n} and got {ans}")
             slow_span.set_attribute("n", n)
             slow_span.set_attribute("nth_fibonacci", ans)
         with tracer.start_as_current_span("fib_fast") as fast_span: # added custom span fast_span
             ans = fib_fast(n)
+            logging.info(f"calculated fib_fast for n={n} and got {ans}")
             fast_span.set_attribute("n", n)
             fast_span.set_attribute("nth_fibonacci", ans)
 
