@@ -1,17 +1,8 @@
-from middleware import mw_tracker, MWOptions
-# mw_tracker(
-#     MWOptions(
-#         access_token="whkvkobudfitutobptgonaezuxpjjypnejbb",
-#         target="https://myapp.middleware.io:443",
-#         service_name="MyPythonApp",
-#     )
-# )
-
-from flask import Flask
-
+from flask import Flask, request
 import logging
 import sys
 from test import sample_function, another_function
+
 logging.getLogger().setLevel(logging.INFO)
 logging.info("Application initiated successfully.", extra={'Tester': 'Alex'})
 
@@ -26,10 +17,13 @@ def hello_world():
 
 @app.route('/exception-new')
 def generate_exception():
+    error_type = request.args.get('type', default=0, type=int)  # Get error type from query param
     try:
-        sample_function()
+        sample_function(error_type)
     except Exception as e:
+        logging.error(f"Caught an exception: {e}")
         another_function(e)
+    return f"Error type {error_type} triggered successfully!"
 
 if __name__ == '__main__':
     app.run('0.0.0.0', 8010)
