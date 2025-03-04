@@ -2,6 +2,7 @@
 sudo apt install python3.12-venv
 python3 -m venv test_env
 source test_env/bin/activate
+cd flask
 pip3 install -r requirements.txt
 ```
 
