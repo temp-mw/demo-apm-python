@@ -31,3 +31,7 @@ def sample_function(error_type: int):
 
 def another_function(e: Exception):
     sys.excepthook(type(e), e, e.__traceback__)
+
+def generate_exceptions():
+    my_list = [1, 2, 3]
+    print(my_list[2])
