@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 import traceback
 import logging
+import copy
 from functools import wraps 
 from opentelemetry import trace, metrics
 from opentelemetry.trace.status import StatusCode
@@ -63,6 +64,40 @@ def trace_request(func):
                 logger.error(f"Stack Trace:\n{traceback.format_exc()}")  # Log the full stack trace
                 return jsonify({"error": "An internal error occurred"}), 500
     return wrapper
+
+# In-memory user store
+user_data = {
+    "alice": {"name": "Alice", "email": "alice@example.com"},
+    "bob":   {"name": "Bob",   "email": "bob@example.com"},
+}
+
+# Bounded list of failed-request context snapshots (max 10 entries)
+_failed_request_context = []
+
+
+@app.route('/user/<username>')
+@trace_request
+def user_profile(username):
+    request_counter.add(1, {"endpoint": "user_profile"})
+    if username not in user_data:
+        # --- Fix 1: return 404 instead of raising a bare KeyError ---
+        logger.warning(f"User '{username}' not found")
+
+        # --- Fix 2: take a bounded snapshot to avoid recursive deepcopy ---
+        previous_failures_snapshot = list(_failed_request_context[-10:])
+        _failed_request_context.append(
+            copy.deepcopy({
+                "username": username,
+                "previous_failures": previous_failures_snapshot,
+            })
+        )
+
+        return jsonify({"error": f"User '{username}' not found"}), 404
+
+    profile = user_data[username]
+    logger.info(f"Returning profile for user '{username}'")
+    return jsonify(profile)
+
 
 @app.route('/')
 @trace_request
